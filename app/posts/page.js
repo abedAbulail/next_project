@@ -1,51 +1,34 @@
-import Link from "next/link";
+"use client";
 
-export default async function PostsPage() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
-    cache: "no-store", // Ensures the data is always fresh
-  });
-  const posts = await response.json();
+import Link from "next/link";
+import UserList from "./userList";
+import CreateUser from "./CreateUser";
+export default function PostsPage() {
+  //   const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+  //     cache: "no-store", // Ensures the data is always fresh
+  //   });
+  //   const posts = await response.json();
+
+  //   const db = await connectToDatabase();
+  //   const [postsFromDB] = await db.query("SELECT * FROM user");
+  //   if (!postsFromDB || postsFromDB.length === 0) {
+  //     return <p>No posts found.</p>;
+  //   }
 
   return (
     <>
-      <div className="main-div">
+      <div className="">
         <div>
-          <h1>Posts Page</h1>
-          <p>This is the posts page of the Next.js application.</p>
-          <div className="container">
-            <div className="row mt-5 text-start">
-              {posts.map((post) => {
-                return (
-                  <div className="col-4  p-3" key={post.id}>
-                    <div className="card ">
-                      <div className="card-body post shadow">
-                        <h2>{post.title}</h2>
-                        <p>{post.body}</p>
-                        <div className="text-center">
-                          <Link className="" href={`/posts/${post.id}`}>
-                            <button className="btn btn-secondary">
-                              Read More
-                            </button>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-        <div>
-          <Link href="/articles">
-            <button>Take me to Articles Page</button>
-          </Link>
-          <br></br>
-          <Link href="/">
-            <button>Take me to Home Page</button>
-          </Link>
+          <h1 className="text-center">الفرق المسجلة</h1>
+          <p className="text-center">
+            اذا اردت التسجيل يوجد فورم اسفل الصفحة
+          </p>
+          <UserList />
         </div>
       </div>
+
+      {/* create user */}
+      <CreateUser />
     </>
   );
 }
